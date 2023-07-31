@@ -17,11 +17,7 @@ btn.addEventListener("click", (e) => {
         char = Number(char);
     }
     if (isNum && chars.length && Number.isFinite(chars[chars.length - 1])) {
-        if (chars[chars.length - 1] > 0) {
-            chars[chars.length - 1] = chars[chars.length - 1] * 10 + char;
-        } else {
-            chars[chars.length - 1] = chars[chars.length - 1] * 10 - char;
-        }
+        chars[chars.length - 1] = Number(String(chars[chars.length - 1]) + char);
     } else if (isNum || isOperator) {
         chars.push(char);
     }
@@ -37,6 +33,9 @@ btn.addEventListener("click", (e) => {
             chars = [];
         } else if (char === "+/-" && chars.length) {
             chars[chars.length - 1] = -chars[chars.length - 1];
+            screen.textContent = chars[chars.length - 1];
+        } else if (char === "%" && chars.length) {
+            chars[chars.length - 1] = chars[chars.length - 1] / 100;
             screen.textContent = chars[chars.length - 1];
         }
         return;
