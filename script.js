@@ -10,12 +10,19 @@ btn.addEventListener("click", (e) => {
 
     let char = e.target.textContent;
     let isNum = e.target.classList.contains("digit");
+    let isOperator = e.target.classList.contains("operator");
+    let isUnary = e.target.classList.contains("unary");
+
     if (isNum) {
         char = Number(char);
     }
     if (isNum && chars.length && Number.isFinite(chars[chars.length - 1])) {
-        chars[chars.length - 1] = chars[chars.length - 1] * 10 + char;
-    } else {
+        if (chars[chars.length - 1] > 0) {
+            chars[chars.length - 1] = chars[chars.length - 1] * 10 + char;
+        } else {
+            chars[chars.length - 1] = chars[chars.length - 1] * 10 - char;
+        }
+    } else if (isNum || isOperator) {
         chars.push(char);
     }
 
@@ -24,16 +31,17 @@ btn.addEventListener("click", (e) => {
         return;
     }
 
-    let isUnary = e.target.classList.contains("unary");
     if (isUnary) {
         if (char === "AC") {
             screen.textContent = 0;
             chars = [];
+        } else if (char === "+/-" && chars.length) {
+            chars[chars.length - 1] = -chars[chars.length - 1];
+            screen.textContent = chars[chars.length - 1];
         }
         return;
     }
 
-    let isOperator = e.target.classList.contains("operator");
     if (isOperator && chars.length === 4) {
         let result = operate(chars[0], chars[1], chars[2]);
         screen.textContent = result;
