@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 80px;
+    background-color: lightgray;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.button-area {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 78px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.digit {
+    background-color: darkcyan;
+}
+
+.unary {
+    background-color: blue;
+}
+
+.operator {
+    background-color: orange;
+}
